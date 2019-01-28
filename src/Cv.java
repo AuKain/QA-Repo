@@ -34,4 +34,52 @@ public class Cv {
 		
 		System.out.println( this.attentes );
 	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom( String nom ) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom( String prenom ) {
+		this.prenom = prenom;
+	}
+
+	public String getFormation() {
+		return formation;
+	}
+
+	public void setFormation( String formation ) {
+		this.formation = formation;
+	}
+
+	public String getAttentes() {
+		return attentes;
+	}
+
+	public void setAttentes( String attentes ) {
+		this.attentes = attentes;
+	}
+
+	public int getAnneesExp() {
+		return anneesExp;
+	}
+
+	public void setAnneesExp( int anneesExp ) {
+		this.anneesExp = anneesExp;
+	}
+
+	public String[] getCompetences() {
+		return competences;
+	}
+
+	public void setCompetences( String[] competences ) {
+		this.competences = competences;
+	}
 }
