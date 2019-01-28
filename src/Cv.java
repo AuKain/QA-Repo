@@ -25,14 +25,18 @@ public class Cv {
 	}
 
 	public void affiche() {
-		
-		System.out.println( this.nom + "\n" + this.prenom + "\n" + this.formation + "\nAnnées d'expérience : " + this.anneesExp );
-		
+
+		System.out.println(
+				"Nom et prénom : " + this.nom + " " + this.prenom );
+		System.out.println( "Formation : " + this.formation );
+		System.out.println( "Années d'expérience : " + this.anneesExp );
+		System.out.println( "Compétences : " );
+
 		for ( String string : this.competences ) {
-			System.out.println( string );
+			System.out.println( "\t" + string );
 		}
-		
-		System.out.println( this.attentes );
+
+		System.out.println( "Attentes : " + this.attentes );
 	}
 
 	public String getNom() {
