@@ -11,7 +11,7 @@ public class Cv {
 		formation = "";
 		attentes = "";
 		anneesExp = 0;
-		competences = new String[10];
+		competences = new String[3];
 	}
 
 	public Cv( String nom, String prenom, String formation, String attentes, int anneesExp, String[] competences ) {

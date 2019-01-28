@@ -4,7 +4,9 @@ public class Main {
 
 		System.out.println( "Bienvenue chez Barette!" );
 		
-		Cv cvBarette = new Cv();
+		String[] compet = {"Melee", "tendinite", "La Mort."};
+		
+		Cv cvBarette = new Cv("Barette", "Jérémy", "Secondaire", "$ARGENT$", -1, compet );
 		
 		cvBarette.affiche();
 		
