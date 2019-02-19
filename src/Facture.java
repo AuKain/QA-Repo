@@ -90,11 +90,35 @@ public class Facture {
 	private void afficherCommande(){
 		
 		System.out.println();
+		boolean present;
+		
+		for (int k = 0; k < clients.size(); k++){
+			
+			present = false;
+			
+			for (int j = 0; j < commandes.length  ; j++){
+				try{
+				
+					if(clients.get(k).compareTo(commandes[j][0]) == 0 ){
+						present = true;
+						break;
+					}
+					
+				} catch (NullPointerException e){
+					
+				}
+					
+			}
+			if (!present){
+				System.out.println(clients.get(k)+ " 0$");
+			}
+		}
+		
 		
 		for (int i = 0; i < commandes.length; i++) {
 			if (!(commandes[i][0] == null ||  commandes[i][1] == null )){
-				System.out.println( commandes[i][0] + " " + commandes[i][1]);
-			}
+				System.out.println( commandes[i][0] + " " + commandes[i][1] + "$");
+			} 
 		}
 	}
 	
