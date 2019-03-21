@@ -1,0 +1,10 @@
+4) Si un client a une facture de 0$, sa facture n’est pas affichée dans le fichier de sortie.
+une méthode qui va ajouter les taxes à une variable double (5% + 10%). 
+public static double ajouterTaxe(double prix) {}
+
+5) En revanche, les taxes sont maintenant appliquées (à raison de TPS 5% et TVQ 10%).
+pour (toutes les factures à traiter) {
+	si (total de la facture == 0) alors {
+		imprimer les informations dans le fichier de sortie...
+	}
+}
