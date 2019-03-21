@@ -1,3 +1,4 @@
+package main;
 public class Cv {
 
 	public String nom, prenom, formation, attentes;
