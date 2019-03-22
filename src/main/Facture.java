@@ -8,6 +8,7 @@ public class Facture {
 	private ArrayList<String> clients = new ArrayList<>();
 	private ArrayList<Plats> plats = new ArrayList<>();
 	private String[][] commandes;
+	public static final double TAXE_TPS = 0.05, TAXE_TVQ = 0.10;
 
 	public Facture( String[] facture ) {
 		int i = 0; 
@@ -107,6 +108,14 @@ public class Facture {
 	public static boolean contientFin( String fin ) {
 
 		return FIN.compareTo( fin ) == 0;
+	}
+	
+	public static double ajouterTaxe(double prix) {
+		return prix * (1.0 + TAXE_TPS) + prix * TAXE_TVQ;
+	}
+	
+	public static boolean voirSiZero(double prix) {
+		return prix == 0;
 	}
 
 	private void afficherCommande() {
