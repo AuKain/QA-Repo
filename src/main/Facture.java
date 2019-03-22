@@ -10,7 +10,7 @@ public class Facture {
 	private String[][] commandes;
 
 	public Facture( String[] facture ) {
-		int i = 0;
+		int i = 0; 
 		int j = 0;
 
 		if ( contientClient( facture[0] ) ) {
