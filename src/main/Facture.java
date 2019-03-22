@@ -1,4 +1,5 @@
 package main;
+
 import java.util.ArrayList;
 
 public class Facture {
@@ -12,11 +13,11 @@ public class Facture {
 		int i = 0;
 		int j = 0;
 
-		if ( CLIENT.compareTo( facture[0] ) == 0 ) {
+		if ( contientClient( facture[0] ) ) {
 
 			i++;
 
-			while ( PLAT.compareTo( facture[i] ) != 0 ) {
+			while ( !contientPlat(facture[i]) ) {
 				clients.add( facture[i] );
 
 				i++;
@@ -25,7 +26,7 @@ public class Facture {
 
 			i++;
 
-			while ( COMMANDE.compareTo( facture[i] ) != 0 ) {
+			while ( !contientCommande(facture[i]) ) {
 				String[] temp = facture[i].split( "\u0020" );
 
 				plats.add( new Plats( temp[0], Double.parseDouble( temp[1] ) ) );
@@ -35,7 +36,7 @@ public class Facture {
 
 			i++;
 
-			while ( FIN.compareTo( facture[i] ) != 0 ) {
+			while ( !contientFin(facture[i]) ) {
 
 				double prix = 0;
 
@@ -88,6 +89,26 @@ public class Facture {
 		}
 	}
 
+	public static boolean contientClient( String client ) {
+
+		return CLIENT.compareTo( client ) == 0;
+	}
+
+	public static boolean contientPlat( String plat ) {
+
+		return PLAT.compareTo( plat ) == 0;
+	}
+
+	public static boolean contientCommande( String commande ) {
+
+		return COMMANDE.compareTo( commande ) == 0;
+	}
+
+	public static boolean contientFin( String fin ) {
+
+		return FIN.compareTo( fin ) == 0;
+	}
+
 	private void afficherCommande() {
 
 		System.out.println();
@@ -121,5 +142,4 @@ public class Facture {
 			}
 		}
 	}
-
 }
