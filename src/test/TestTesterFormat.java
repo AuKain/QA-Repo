@@ -8,41 +8,42 @@ import main.Facture;
 
 public class TestTesterFormat {
 	
-	String[] factureTest;
+	String[] factureTest = { "Clients :", "Roger", "Céline", "Steeve", "Plats :", "Poutine 10.5", "Frites 2.5",
+			"Repas_Poulet 15.75", "Commandes :", "Roger Poutine 1", "Céline Frites 2", "Céline Repas_Poulet 1",
+			"Fin", };
 	int result;
 
 	@Test
 	public void testBonneFacture() {
-		factureTest = new String[5];
 		result = -1;
-		assertEquals(result, Facture.testerFormat(factureTest));
+		assertEquals( result, Facture.testerFormat( factureTest ) );
 	}
-	
+
 	@Test
-	public void testMauvaisPrix(){
-		factureTest = new String[5];
+	public void testMauvaisPrix() {
+		factureTest[5] = "Poutine &/!";
 		result = 0;
-		assertEquals(result, Facture.testerFormat(factureTest));
+		assertEquals( result, Facture.testerFormat( factureTest ) );
 	}
-	
+
 	@Test
 	public void testMauvaisFormat() {
-		factureTest = new String[5];
+		factureTest[11] = "CélineRepas_Poulet 1%";
 		result = 1;
-		assertEquals(result, Facture.testerFormat(factureTest));
+		assertEquals( result, Facture.testerFormat( factureTest ) );
 	}
-	
+
 	@Test
 	public void testMauvaisClient() {
-		factureTest = new String[5];
+		factureTest[11] = "Simon Repas_Poulet 1";
 		result = 2;
-		assertEquals(result, Facture.testerFormat(factureTest));
+		assertEquals( result, Facture.testerFormat( factureTest ) );
 	}
-	
+
 	@Test
 	public void testMauvaisPlat() {
-		factureTest = new String[5];
+		factureTest[11] = "Céline Soupe_Poulet_Et_Nouilles 1";
 		result = 3;
-		assertEquals(result, Facture.testerFormat(factureTest));
+		assertEquals( result, Facture.testerFormat( factureTest ) );
 	}
 }

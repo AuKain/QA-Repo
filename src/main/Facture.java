@@ -11,14 +11,14 @@ public class Facture {
 	public static final double TAXE_TPS = 0.05, TAXE_TVQ = 0.10;
 
 	public Facture( String[] facture ) {
-		int i = 0; 
+		int i = 0;
 		int j = 0;
 
 		if ( contientClient( facture[0] ) ) {
 
 			i++;
 
-			while ( !contientPlat(facture[i]) ) {
+			while ( !contientPlat( facture[i] ) ) {
 				clients.add( facture[i] );
 
 				i++;
@@ -27,7 +27,7 @@ public class Facture {
 
 			i++;
 
-			while ( !contientCommande(facture[i]) ) {
+			while ( !contientCommande( facture[i] ) ) {
 				String[] temp = facture[i].split( "\u0020" );
 
 				plats.add( new Plats( temp[0], Double.parseDouble( temp[1] ) ) );
@@ -37,7 +37,7 @@ public class Facture {
 
 			i++;
 
-			while ( !contientFin(facture[i]) ) {
+			while ( !contientFin( facture[i] ) ) {
 
 				double prix = 0;
 
@@ -109,12 +109,12 @@ public class Facture {
 
 		return FIN.compareTo( fin ) == 0;
 	}
-	
-	public static double ajouterTaxe(double prix) {
-		return prix * (1.0 + TAXE_TPS) + prix * TAXE_TVQ;
+
+	public static double ajouterTaxe( double prix ) {
+		return prix * ( 1.0 + TAXE_TPS ) + prix * TAXE_TVQ;
 	}
-	
-	public static boolean voirSiZero(double prix) {
+
+	public static boolean voirSiZero( double prix ) {
 		return prix == 0;
 	}
 
