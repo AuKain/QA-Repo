@@ -9,7 +9,7 @@ public class Main {
 	public static void main( String[] args ) {
 		try {
 
-			new Facture( ( Files.readAllLines( new File( "Facture.txt" ).toPath(), Charset.defaultCharset() ) )
+			new Facture( ( Files.readAllLines( new File( "facture.txt" ).toPath(), Charset.defaultCharset() ) )
 					.toArray( new String[] {} ) );
 		} catch ( IOException e ) {
 		}
