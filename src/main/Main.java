@@ -6,7 +6,7 @@ import java.nio.file.*;
 
 public class Main {
 
-	public static String main( String[] args ) {
+	public static void main( String[] args ) {
 		String erreur = new String();
 		try {
 
@@ -16,6 +16,6 @@ public class Main {
 			erreur = "OOOOOOOOOOOOF";
 		}
 		System.out.println( "\nFin du programme." );
-		return erreur;
+		  
 	}
 }

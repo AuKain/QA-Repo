@@ -6,7 +6,7 @@ public class Facture {
 
 	public static final String CLIENT = "Clients :", PLAT = "Plats :", COMMANDE = "Commandes :", FIN = "Fin";
 	private ArrayList<String> clients = new ArrayList<>();
-	private ArrayList<Plats> plats = new ArrayList<>();
+	private ArrayList<Plats> plats = new ArrayList<>(); 
 	private String[][] commandes;
 	public static final double TAXE_TPS = 0.05, TAXE_TVQ = 0.10;
 
@@ -43,7 +43,7 @@ public class Facture {
 
 				int nbPlat = Integer.parseInt( facture[i].split( "\u0020" )[2] );
 
-				double prixSimple = 0;
+				double prixSimple = 0; 
 
 				for ( Plats plats : plats ) {
 
@@ -84,8 +84,8 @@ public class Facture {
 				}
 				i++;
 			}
-			
-			afficherCommande();
+		
+			afficherCommande(); 
 		} else {
 			System.out.println( "Le fichier facture n'est pas valide." );
 		}
@@ -159,8 +159,8 @@ public class Facture {
 		ArrayList<String> platsTemp = new ArrayList<String>();
 		ArrayList<String> nomCommande = new ArrayList<String>();
 		ArrayList<String> platsCommande = new ArrayList<String>(); 
-		int[] prixTemp = new int[15];
-		int[] combien = new int[15];
+		double[] prixTemp = new double[15];
+		double[] combien = new double[15];
 		int i = 1;
 		while ( facture[i].compareToIgnoreCase(PLAT) != 0){
 			clientsTemp.add(facture[i]);
@@ -171,9 +171,9 @@ public class Facture {
 		while (facture[i].compareToIgnoreCase(COMMANDE) != 0 ){
 			platsTemp.add(facture[i].split(" ")[0]);
 			try{
-				prixTemp[j] = Integer.parseInt(facture[i].split(" ")[1]);
+				prixTemp[j] = Double.parseDouble((facture[i].split(" ")[1]));
 			}
-			catch (Exception e){
+			catch (NumberFormatException e){ 
 				retour = 0;
 			}
 			
@@ -195,9 +195,9 @@ public class Facture {
 			k++;
 		}
 		boolean trouve = false;
-		for (String vraiNom : clientsTemp) { 
+		for (String nom : nomCommande) {  
 			trouve = false;
-			for (String nom : nomCommande) {
+			for (String vraiNom : clientsTemp) {
 				if (vraiNom.compareToIgnoreCase(nom) == 0){ 
 					trouve = true;
 				}
@@ -208,10 +208,10 @@ public class Facture {
 			}
 		}
 		boolean trouvePlat = false;
-		for (String  vraiPlat : platsTemp) {
-			trouve = false;
-			for (String plat : platsCommande) {
-				if (plat == vraiPlat){
+		for (String plat : platsCommande) {
+			trouvePlat = false;
+			for (String  vraiPlat : platsTemp) {
+				if (plat.compareToIgnoreCase(vraiPlat) == 0){
 					trouvePlat = true;
 				}
 			}
@@ -219,7 +219,7 @@ public class Facture {
 				retour = 3;;
 			}
 		}
-		System.out.println(retour);
+		
 		return retour;
 	}
 

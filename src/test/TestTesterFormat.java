@@ -15,9 +15,8 @@ public class TestTesterFormat {
 
 	@Test
 	public void testBonneFacture() {
-		result = -1;
-		System.out.println(Facture.testerFormat( factureTest )); 
-		assertEquals( result, Facture.testerFormat( factureTest ) );   
+		result = -1;  
+		assertEquals( result, Facture.testerFormat( factureTest ) );    
 		
 	}
 
@@ -30,7 +29,7 @@ public class TestTesterFormat {
 
 	@Test
 	public void testMauvaisFormat() {
-		factureTest[11] = "CélineRepas_Poulet 1%";
+		factureTest[11] = "Céline Repas_Poulet 1%";
 		result = 1;
 		assertEquals( result, Facture.testerFormat( factureTest ) );
 	}
