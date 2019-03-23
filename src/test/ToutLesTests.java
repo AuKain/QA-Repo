@@ -6,7 +6,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ TestFacture.class, TestsMiseEnFormeFacture.class, TestTesterFormat.class, TestPlats.class,
-		TestMain.class })
+		TestFichierFacture.class })
 public class ToutLesTests {
 
 }

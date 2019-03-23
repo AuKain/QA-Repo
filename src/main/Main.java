@@ -11,7 +11,7 @@ public class Main {
 
 		try {
 
-			new Facture( ( Files.readAllLines( new File( "Facture.txt" ).toPath(), Charset.defaultCharset() ) )
+			new Facture( ( Files.readAllLines( new File( "facture.txt" ).toPath(), Charset.defaultCharset() ) )
 					.toArray( new String[] {} ) );
 		} catch ( IOException e ) {
 		}
