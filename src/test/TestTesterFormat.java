@@ -16,12 +16,14 @@ public class TestTesterFormat {
 	@Test
 	public void testBonneFacture() {
 		result = -1;
-		assertEquals( result, Facture.testerFormat( factureTest ) );
+		System.out.println(Facture.testerFormat( factureTest )); 
+		assertEquals( result, Facture.testerFormat( factureTest ) );   
+		
 	}
 
 	@Test
 	public void testMauvaisPrix() {
-		factureTest[5] = "Poutine &/!";
+		factureTest[5] = "Poutine &/!"; 
 		result = 0;
 		assertEquals( result, Facture.testerFormat( factureTest ) );
 	}

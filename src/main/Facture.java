@@ -84,6 +84,7 @@ public class Facture {
 				}
 				i++;
 			}
+			
 			afficherCommande();
 		} else {
 			System.out.println( "Le fichier facture n'est pas valide." );
@@ -151,4 +152,77 @@ public class Facture {
 			}
 		}
 	}
+
+	public static int testerFormat(String[] facture){
+		int retour = -1;
+		ArrayList<String> clientsTemp = new ArrayList<String>();
+		ArrayList<String> platsTemp = new ArrayList<String>();
+		ArrayList<String> nomCommande = new ArrayList<String>();
+		ArrayList<String> platsCommande = new ArrayList<String>(); 
+		int[] prixTemp = new int[15];
+		int[] combien = new int[15];
+		int i = 1;
+		while ( facture[i].compareToIgnoreCase(PLAT) != 0){
+			clientsTemp.add(facture[i]);
+			i++;	
+		}
+		i++;
+		int j = 0;
+		while (facture[i].compareToIgnoreCase(COMMANDE) != 0 ){
+			platsTemp.add(facture[i].split(" ")[0]);
+			try{
+				prixTemp[j] = Integer.parseInt(facture[i].split(" ")[1]);
+			}
+			catch (Exception e){
+				retour = 0;
+			}
+			
+			j++;
+			i++;
+		}
+		i++;
+		int k = 0;
+		while (facture[i].compareToIgnoreCase(FIN) != 0){
+			nomCommande.add(facture[i].split(" ")[0]);
+			platsCommande.add(facture[i].split(" ")[1]);
+			try {
+				combien[k] = Integer.parseInt(facture[i].split(" ")[2]);
+			}
+			catch (Exception e){
+				retour = 1;
+			}
+			i++;
+			k++;
+		}
+		boolean trouve = false;
+		for (String vraiNom : clientsTemp) { 
+			trouve = false;
+			for (String nom : nomCommande) {
+				if (vraiNom.compareToIgnoreCase(nom) == 0){ 
+					trouve = true;
+				}
+			}
+			if (!trouve){
+				retour = 2;
+				break;
+			}
+		}
+		boolean trouvePlat = false;
+		for (String  vraiPlat : platsTemp) {
+			trouve = false;
+			for (String plat : platsCommande) {
+				if (plat == vraiPlat){
+					trouvePlat = true;
+				}
+			}
+			if (!trouvePlat){
+				retour = 3;;
+			}
+		}
+		System.out.println(retour);
+		return retour;
+	}
+
+
+
 }
