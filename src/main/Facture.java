@@ -153,7 +153,7 @@ public class Facture {
 		}
 	}
 
-	/*public static int testerFormat(String[] facture){
+	public static int testerFormat(String[] facture){
 		int retour = -1;
 		ArrayList<String> clientsTemp = new ArrayList<String>();
 		ArrayList<String> platsTemp = new ArrayList<String>();
@@ -221,7 +221,7 @@ public class Facture {
 		}
 		
 		return retour;
-	}*/
+	}
 
 
 
