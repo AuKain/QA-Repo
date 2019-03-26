@@ -3,11 +3,15 @@ Roger
 Céline
 Steeve
 Plats :
+Spaghetti_bolognaise &??$
 Poutine 10.5
 Frites 2.5
 Repas_Poulet 15.75
 Commandes :
 Roger Poutine 1
 Céline Frites 2
+Céline Repas_Poulet 1%
 Céline Repas_Poulet 1
+Céline Soupe_Poulet_Et_Nouilles 1
+Simon Repas_Poulet 1
 Fin
