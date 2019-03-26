@@ -1,5 +1,18 @@
 package main;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.FileAttribute;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Facture {
@@ -20,7 +33,9 @@ public class Facture {
 			i++;
 
 			while ( !contientPlat( facture[i] ) ) {
-				clients.add( facture[i] );
+				if ( !facture[i].isEmpty() ) {
+					clients.add( facture[i] );
+				}
 
 				i++;
 			}
@@ -29,18 +44,19 @@ public class Facture {
 			i++;
 
 			while ( !contientCommande( facture[i] ) ) {
-				String[] temp = facture[i].split( "\u0020" );
-
-				try {
-					plats.add( new Plats( temp[0], Double.parseDouble( temp[1] ) ) );
-				} catch ( Exception e ) {
+				if ( !facture[i].isEmpty() ) {
+					String[] temp = facture[i].split( "\u0020" );
+					try {
+						plats.add( new Plats( temp[0], Double.parseDouble( temp[1] ) ) );
+					} catch ( Exception e ) {
+					}
 				}
 				i++;
 			}
 
 			i++;
 
-			while ( !contientFin( facture[i] ) && facture.length < i ) {
+			while ( !contientFin( facture[i] ) && facture.length > i ) {
 
 				if ( !facture[i].isEmpty() ) {
 					double prix = 0;
@@ -93,9 +109,26 @@ public class Facture {
 			}
 			erreurFactures += batirCommande();
 			System.out.println( erreurFactures );
+			ecrireFacture( erreurFactures );
 		} else {
 			System.out.println( "Le fichier facture n'est pas valide." );
 		}
+	}
+
+	private void ecrireFacture( String contenu ) {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern( "YYYY-MM-dd_HH-mm" );
+		LocalDateTime now = LocalDateTime.now();
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter("Facture_du_" + dtf.format( now ) + ".txt", "UTF-8");
+			writer.print(contenu);
+			writer.close();
+		} catch ( FileNotFoundException e ) {
+			e.printStackTrace();
+		} catch ( UnsupportedEncodingException e ) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	private static void setErreurs( String erreurs ) {
