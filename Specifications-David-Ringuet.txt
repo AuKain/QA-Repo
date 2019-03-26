@@ -1,0 +1,11 @@
+2)
+la méthode afficherCommande() vas devenir private String batirCommande(). Cette méthode vas retourner un string contenant toute la  facture
+le résultat de  batirCommande vas être imprimé dans la console et dans un fichier nommé comme suit: Facture-du-date-heure.txt
+
+3)
+ajouter dans batirCommande()
+SI (la facture est non valide){
+	ajouter au string retourné par batirCommande(): facture invalide 
+	ajouter au string retourné par batirCommande(): la raison
+	ajouter au string retourné par batirCommande(): les détails de la facture.
+}

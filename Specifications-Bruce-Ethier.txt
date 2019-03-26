@@ -1,0 +1,12 @@
+1)
+
+testerFormat(String[] facture)
+Il faudra ajouter des variables booléaine pour vérifier si
+chacune des restriction de lecture est violée.(nom/plat nexistant pas, format nom respecté, etc)
+durant laffichage si un de ces booléans est a true, le messages s'ajuste pour expliquer la provenance
+du probleme.
+retourne -1 si pas d'erreur,
+retourne 0 si le prix d'un plat n'est pas un chiffre
+retourne 1 si le format des commandes n'est pas respecté
+retourne 2 si le client n'existe pas dans la commande
+retourne 3 si le plat existe pas dans la commande
