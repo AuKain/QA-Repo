@@ -1,0 +1,65 @@
+Erreur le client : Simon n'est pas un client valide
+
+Erreur la commande : Céline Repas_Poulet 1% n'est pas écrit sous un format valide
+
+Erreur le plat : Soupe_Poulet_Et_Nouilles n'est pas un plat valide
+
+Erreur le plat : Poutine ne possède pas un prix valide
+
+Erreur le client : Simon n'est pas un client valide
+
+Erreur la commande : Céline Repas_Poulet 1% n'est pas écrit sous un format valide
+
+Erreur le plat : Soupe_Poulet_Et_Nouilles n'est pas un plat valide
+
+Erreur le plat : Poutine ne possède pas un prix valide
+
+Erreur le plat : Spaghetti_bolognaise ne possède pas un prix valide
+
+Erreur la commande : Céline Repas_Poulet 1% n'est pas écrit sous un format valide
+
+Erreur le plat : Soupe_Poulet_Et_Nouilles n'est pas un plat valide
+
+Erreur le client : Simon n'est pas un client valide
+
+Erreur le plat : Soupe_Poulet_Et_Nouilles n'est pas un plat valide
+
+Roger 0$
+Roger 0$
+Céline 0$
+Roger 0$
+Céline 0$
+Steeve 0$
+Roger 0$
+Céline 0$
+Steeve 0$
+Roger 0$
+Céline 0$
+Steeve 0$
+Roger 0$
+Céline 0$
+Steeve 0$
+Roger 0$
+Céline 0$
+Steeve 0$
+Céline 0$
+Steeve 0$
+Roger 10.5$
+Steeve 0$
+Roger 10.5$
+Céline 5.0$
+Steeve 0$
+Roger 10.5$
+Céline 5.0$
+Steeve 0$
+Roger 10.5$
+Céline 5.0$
+Céline 15.75$
+Steeve 0$
+Roger 10.5$
+Céline 5.0$
+Céline 15.75$
+Steeve 0$
+Roger 10.5$
+Céline 5.0$
+Céline 15.75$
