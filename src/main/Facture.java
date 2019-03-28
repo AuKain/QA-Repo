@@ -20,98 +20,101 @@ public class Facture {
 	public static final String CLIENT = "Clients :", PLAT = "Plats :", COMMANDE = "Commandes :", FIN = "Fin";
 	private ArrayList<String> clients = new ArrayList<>();
 	private ArrayList<Plats> plats = new ArrayList<>();
-	private String[][] commandes;
+	private ArrayList<String[]> listeCommandes = new ArrayList<String[]>();
 	static String erreurFactures = new String( "" );
 	public static final double TAXE_TPS = 0.05, TAXE_TVQ = 0.10;
 
 	public Facture( String[] facture ) {
-		int i = 0;
 		int j = 0;
+		String categorie = "";
 		testerFormat( facture, erreurFactures );
-		if ( contientClient( facture[0] ) ) {
+		for ( int i = 0; i < facture.length; i++ ) {
 
-			i++;
+			switch ( facture[i] ) {
+			case PLAT:
+				categorie = PLAT;
+				break;
+			case COMMANDE:
+				categorie = COMMANDE;
+				break;
+			case CLIENT:
+				categorie = CLIENT;
+				break;
+			case FIN:
+				categorie = FIN;
+				break;
 
-			while ( !contientPlat( facture[i] ) ) {
-				if ( !facture[i].isEmpty() ) {
-					clients.add( facture[i] );
-				}
-
-				i++;
-			}
-			commandes = new String[clients.size()][2];
-
-			i++;
-
-			while ( !contientCommande( facture[i] ) ) {
-				if ( !facture[i].isEmpty() ) {
-					String[] temp = facture[i].split( "\u0020" );
-					try {
-						plats.add( new Plats( temp[0], Double.parseDouble( temp[1] ) ) );
-					} catch ( Exception e ) {
-					}
-				}
-				i++;
-			}
-
-			i++;
-
-			while ( !contientFin( facture[i] ) && facture.length > i ) {
-
-				if ( !facture[i].isEmpty() ) {
-					double prix = 0;
-					int nbPlat = 0;
-					try {
-						nbPlat = Integer.parseInt( facture[i].split( "\u0020" )[2] );
-					} catch ( Exception e ) {
-
-					}
-					double prixSimple = 0;
-					for ( Plats plats : plats ) {
-
-						if ( plats.getNom().compareTo( facture[i].split( " " )[1] ) == 0 ) {
-							prixSimple = plats.getCout();
-
-							break;
+			default:
+				if ( contientClient( facture[0] ) ) {
+					if ( categorie.compareToIgnoreCase( FIN ) != 0 && !facture[i].isEmpty() ) {
+						if ( categorie.compareToIgnoreCase( CLIENT ) == 0 ) {
+							clients.add( facture[i] );
 						}
-					}
-					prix = nbPlat * prixSimple;
-					if ( j == 0 ) {
-						commandes[j][0] = facture[i].split( "\u0020" )[0];
-						commandes[j][1] = prix + "";
-						j++;
-					} else {
-						boolean dejaLa = false;
-
-						for ( int k = 0; k < commandes.length; k++ ) {
-
+						if ( categorie.compareToIgnoreCase( PLAT ) == 0 ) {
+							String[] temp = facture[i].split( "\u0020" );
 							try {
-								if ( facture[i].split( " " )[0].compareTo( commandes[k][0] ) == 0 ) {
-
-									double temp = Double.parseDouble( commandes[k][1] ) + prix;
-
-									commandes[k][1] = temp + "";
-
-									dejaLa = true;
-									break;
-								}
+								plats.add( new Plats( temp[0], Double.parseDouble( temp[1] ) ) );
 							} catch ( Exception e ) {
 							}
+
 						}
-						if ( !dejaLa ) {
-							commandes[j][0] = facture[i].split( "\u0020" )[0];
-							commandes[j][1] = prix + "";
+						if ( categorie.compareToIgnoreCase( COMMANDE ) == 0 ) {
+							if ( !facture[i].isEmpty() ) {
+								double prix = 0;
+								int nbPlat = 0;
+								try {
+									nbPlat = Integer.parseInt( facture[i].split( "\u0020" )[2] );
+								} catch ( Exception e ) {
+
+								}
+								double prixSimple = 0;
+								for ( Plats plats : plats ) {
+
+									if ( plats.getNom().compareTo( facture[i].split( " " )[1] ) == 0 ) {
+										prixSimple = plats.getCout();
+
+										break;
+									}
+								}
+								prix = nbPlat * prixSimple;
+								if ( j == 0 ) {
+									String[] comm = { facture[i].split( "\u0020" )[0], prix + "" };
+									listeCommandes.add( comm );
+								} else {
+									boolean dejaLa = false;
+
+									for ( String[] commande : listeCommandes ) {
+										try {
+											if ( facture[i].split( " " )[0].compareTo( commande[0] ) == 0 ) {
+
+												double temp = Double.parseDouble( commande[1] ) + prix;
+
+												commande[1] = temp + "";
+
+												dejaLa = true;
+												break;
+											}
+										} catch ( Exception e ) {
+										}
+										if ( !dejaLa ) {
+											commande[0] = facture[i].split( "\u0020" )[0];
+											commande[1] = prix + "";
+										}
+									}
+								}
+							}
 						}
-						j++;
 					}
+				} else {
+					System.out.println( "Le fichier facture n'est pas valide." );
 				}
-				i++;
+				break;
 			}
+		}
+		if ( categorie.compareToIgnoreCase( FIN ) == 0 ) {
 			erreurFactures += batirCommande();
 			System.out.println( erreurFactures );
 			ecrireFacture( erreurFactures );
-		} else {
-			System.out.println( "Le fichier facture n'est pas valide." );
 		}
 	}
 
@@ -120,15 +123,15 @@ public class Facture {
 		LocalDateTime now = LocalDateTime.now();
 		PrintWriter writer;
 		try {
-			writer = new PrintWriter("Facture_du_" + dtf.format( now ) + ".txt", "UTF-8");
-			writer.print(contenu);
+			writer = new PrintWriter( "Facture_du_" + dtf.format( now ) + ".txt", "UTF-8" );
+			writer.print( contenu );
 			writer.close();
 		} catch ( FileNotFoundException e ) {
 			e.printStackTrace();
 		} catch ( UnsupportedEncodingException e ) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	private static void setErreurs( String erreurs ) {
@@ -167,15 +170,18 @@ public class Facture {
 		String factureFinale = new String();
 		String commande = new String( "" );
 		boolean present;
+		String[] commandeTemp = new String[2];
 
 		for ( int k = 0; k < clients.size(); k++ ) {
 
 			present = false;
 
-			for ( int j = 0; j < commandes.length; j++ ) {
+			for ( int j = 0; j < listeCommandes.size(); j++ ) {
+
+				commandeTemp = listeCommandes.get( j );
 				try {
 
-					if ( clients.get( k ).compareTo( commandes[j][0] ) == 0 ) {
+					if ( clients.get( k ).compareTo( commandeTemp[0] ) == 0 ) {
 						present = true;
 						break;
 					}
@@ -190,12 +196,13 @@ public class Facture {
 			}
 		}
 
-		for ( int i = 0; i < commandes.length; i++ ) {
-			if ( !( commandes[i][0] == null || commandes[i][1] == null ) ) {
-				commande += ( commandes[i][0] + " " + commandes[i][1] + "$\n" );
+		for ( int i = 0; i < listeCommandes.size(); i++ ) {
+			commandeTemp = listeCommandes.get( i );
+			if ( !( commandeTemp[0] == null || commandeTemp[1] == null ) ) {
+				commande += ( commandeTemp[0] + " " + commandeTemp[1] + "$\n" );
 			}
 		}
-		return ( factureFinale += commande );
+		return ( commande );
 	}
 
 	public static int testerFormat( String[] facture, String erreursFacture ) {
