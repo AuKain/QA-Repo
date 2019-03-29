@@ -69,7 +69,7 @@ public class Facture {
 								}
 								prix = nbPlat * prixSimple;
 								String[] comm = { facture[i].split( "\u0020" )[0], prix + "" };
-								if ( clientCaliss( comm[0] ) == -1 ) {
+								if ( clientExiste( comm[0] ) == -1 ) {
 
 									listeCommandes.add( comm );
 
@@ -105,7 +105,7 @@ public class Facture {
 		}
 	}
 
-	private int clientCaliss( String client ) {
+	private int clientExiste( String client ) {
 		int existe = -1;
 
 		for ( int i = 0; i < listeCommandes.size(); i++ ) {
