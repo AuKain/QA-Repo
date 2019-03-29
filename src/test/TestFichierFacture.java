@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import main.Facture;
@@ -14,8 +16,13 @@ import main.Facture;
 public class TestFichierFacture {
 
 	String badErreur = "OOOOOf";
-	String erreur = new String();
-	
+	static String erreur;
+
+	@BeforeClass
+	public static void avant() {
+		erreur = new String();
+	}
+
 	@Test
 	public void testBonFichier() {
 		erreur = "";
@@ -29,7 +36,7 @@ public class TestFichierFacture {
 		}
 		assertEquals( "", erreur );
 	}
-	
+
 	@Test
 	public void testMauvaisFichier() {
 		erreur = "";
@@ -42,6 +49,11 @@ public class TestFichierFacture {
 			erreur = badErreur;
 		}
 		assertEquals( badErreur, erreur );
+	}
+
+	@AfterClass
+	public static void apres() {
+		erreur = null;
 	}
 
 }

@@ -1,4 +1,5 @@
 package main;
+
 public class Plats {
 
 	private String nom;
