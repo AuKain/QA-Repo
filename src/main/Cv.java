@@ -1,4 +1,5 @@
 package main;
+
 public class Cv {
 
 	public String nom, prenom, formation, attentes;
@@ -27,8 +28,7 @@ public class Cv {
 
 	public void affiche() {
 
-		System.out.println(
-				"Nom et prénom : " + this.nom + " " + this.prenom );
+		System.out.println( "Nom et prénom : " + this.nom + " " + this.prenom );
 		System.out.println( "Formation : " + this.formation );
 		System.out.println( "Années d'expérience : " + this.anneesExp );
 		System.out.println( "Compétences : " );

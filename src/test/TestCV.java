@@ -22,27 +22,27 @@ public class TestCV {
 	public void testPrenom() {
 		Cv cv = new Cv();
 		cv.setPrenom( "prenom" );
-		assertEquals( "prenom", cv.getPrenom());
+		assertEquals( "prenom", cv.getPrenom() );
 	}
 
 	@Test
 	public void testFormation() {
 		Cv cv = new Cv();
 		cv.setFormation( "formation" );
-		assertEquals( "formation", cv.getFormation());
+		assertEquals( "formation", cv.getFormation() );
 	}
-	
+
 	@Test
 	public void testAttentes() {
 		Cv cv = new Cv();
 		cv.setAttentes( "attentes" );
-		assertEquals( "attentes", cv.getAttentes());
+		assertEquals( "attentes", cv.getAttentes() );
 	}
-	
+
 	@Test
 	public void testAnneesExp() {
 		Cv cv = new Cv();
 		cv.setAnneesExp( 2 );
-		assertEquals( 2, cv.getAnneesExp());
+		assertEquals( 2, cv.getAnneesExp() );
 	}
 }
