@@ -9,7 +9,8 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main( String[] args ) {
-
+		
+		
 		try {
 
 			new Facture( ( Files.readAllLines( new File( lireNomFichier() ).toPath(), Charset.defaultCharset() ) )
@@ -18,7 +19,7 @@ public class Main {
 			System.out.println( "La facture n'existe pas ou est impossible à lire." );
 
 		}
-		System.out.println( "\nFin du programme." );
+		System.out.println( "Fin du programme." );
 
 	}
 

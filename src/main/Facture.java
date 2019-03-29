@@ -17,7 +17,6 @@ public class Facture {
 	public static final double TAXE_TPS = 0.05, TAXE_TVQ = 0.10;
 
 	public Facture( String[] facture ) {
-		int j = 0;
 		String categorie = "";
 		testerFormat( facture, erreurFactures );
 		for ( int i = 0; i < facture.length; i++ ) {
@@ -69,11 +68,12 @@ public class Facture {
 									}
 								}
 								prix = nbPlat * prixSimple;
-								if ( j == 0 ) {
-									String[] comm = { facture[i].split( "\u0020" )[0], prix + "" };
+								String[] comm = { facture[i].split( "\u0020" )[0], prix + "" };
+								if ( clientCaliss( comm[0] ) == -1 ) {
+
 									listeCommandes.add( comm );
+
 								} else {
-									boolean dejaLa = false;
 
 									for ( String[] commande : listeCommandes ) {
 										try {
@@ -83,14 +83,9 @@ public class Facture {
 
 												commande[1] = temp + "";
 
-												dejaLa = true;
 												break;
 											}
 										} catch ( Exception e ) {
-										}
-										if ( !dejaLa ) {
-											commande[0] = facture[i].split( "\u0020" )[0];
-											commande[1] = prix + "";
 										}
 									}
 								}
@@ -108,6 +103,20 @@ public class Facture {
 			System.out.println( erreurFactures );
 			ecrireFacture( erreurFactures );
 		}
+	}
+
+	private int clientCaliss( String client ) {
+		int existe = -1;
+
+		for ( int i = 0; i < listeCommandes.size(); i++ ) {
+
+			if ( listeCommandes.size() == 0 || listeCommandes.get( i )[0].equalsIgnoreCase( client ) ) {
+				existe = i;
+				break;
+			}
+		}
+
+		return existe;
 	}
 
 	private void ecrireFacture( String contenu ) {
@@ -233,8 +242,8 @@ public class Facture {
 					try {
 						prixTemp[j] = Double.parseDouble( ( facture[i].split( " " )[1] ) );
 					} catch ( NumberFormatException e ) {
-						erreursFacture += "Erreur le plat : " + platsTemp.get( j )
-								+ " ne possède pas un prix valide\n\n";
+						erreursFacture += "\nErreur le plat : " + platsTemp.get( j )
+								+ " ne possède pas un prix valide\n";
 						facture[i] = "";
 						retour = 0;
 					}
@@ -248,8 +257,8 @@ public class Facture {
 					try {
 						combien[k] = Integer.parseInt( facture[i].split( " " )[2] );
 					} catch ( Exception e ) {
-						erreursFacture += "Erreur la commande : " + facture[i]
-								+ " n'est pas écrit sous un format valide\n\n";
+						erreursFacture += "\nErreur la commande : " + facture[i]
+								+ " n'est pas écrit sous un format valide\n";
 						facture[i] = "";
 						retour = 1;
 					}
@@ -263,7 +272,7 @@ public class Facture {
 							}
 						}
 						if ( !trouve ) {
-							erreursFacture += "Erreur le client : " + nom + " n'est pas un client valide\n\n";
+							erreursFacture += "\nErreur le client : " + nom + " n'est pas un client valide\n";
 							facture[i] = "";
 							retour = 2;
 							break;
@@ -278,7 +287,7 @@ public class Facture {
 							}
 						}
 						if ( !trouvePlat ) {
-							erreursFacture += "Erreur le plat : " + plat + " n'est pas un plat valide\n\n";
+							erreursFacture += "\nErreur le plat : " + plat + " n'est pas un plat valide\n";
 							facture[i] = "";
 							retour = 3;
 							;
